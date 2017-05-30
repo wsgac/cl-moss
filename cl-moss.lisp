@@ -113,6 +113,9 @@
     (let* ((socket (usocket::socket-connect server port))
            (socket-stream (usocket::socket-stream socket))
            (language (get-option-value options "l")))
+      #+cl-moss-debug
+      (warn "Socket successfully opened on port ~d"
+            (usocket::get-local-port socket))
       (format socket-stream "moss ~a~%~
                              directory ~a~%~
                              X ~a~%~
@@ -125,6 +128,9 @@
               (get-option-value options "m")
               (get-option-value options "n")
               language)
+      (force-output socket-stream)
+      #+cl-moss-debug
+      (warn "Preamble sent to MOSS server")
       ;; Language check
       (let ((in-line (read-line socket-stream)))
         (when (string-equal "no"
@@ -132,14 +138,23 @@
           (format socket-stream "end~%")
           (usocket::socket-close socket)
           (error "Unsupported language: [~(~a~)]" language)))
+      #+cl-moss-debug
+      (warn "Language check successful. Language: [~(~a~)]" language)
       (loop
          for bfile in base-files
          do (upload-file socket bfile language 0))
+      #+cl-moss-debug
+      (warn "Base files uploaded successfully: ~{~a~^, ~}" base-files)
       (loop
          for i from 1
          for file in files
          do (upload-file socket file language i))
+      #+cl-moss-debug
+      (warn "Files uploaded successfully: ~{~a~^, ~}" files)
       (format socket-stream "query 0 ~d~%" (get-option-value options "c"))
+      (force-output socket-stream)
+      #+cl-moss-debug
+      (warn "Query successfully sent")
       (let ((response (read-line socket-stream)))
         (format socket-stream "end~%")
         (usocket::socket-close socket)
