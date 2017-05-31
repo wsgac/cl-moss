@@ -9,6 +9,13 @@ Supported Languages
 -------------------
 Currently supported languages are: C, C++, Java, ML, Pascal, Ada, Lisp, Scheme, Haskell, Fortran, ASCII, VHDL, Perl, Matlab, Python, MIPS assembly, Prolog, Spice, VB, C#, Modula2, a8086 assembly, JavaScript, PLSQL and Verilog
 
+Installation
+------------
+CL-MOSS is ASDF-based. If you have Quicklisp installed, you can check out CL-MOSS into your `local-projects` directory (or make an appropriate symlink) and then run:
+```
+CL-USER> (ql:quickload :cl-moss)
+```
+
 Example Usage
 -------------
 Below is a sample usage session:
