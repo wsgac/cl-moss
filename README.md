@@ -12,11 +12,13 @@ Currently supported languages are: C, C++, Java, ML, Pascal, Ada, Lisp, Scheme, 
 Example Usage
 -------------
 Below is a sample usage session:
-    CL-MOSS> (defparameter *moss* (moss-initialize "<user-id>"))
-    CL-MOSS> (set-language *moss* :lisp) ; string value is also fine
-    CL-MOSS> (add-base-file *moss* "project/example.lisp")
-    CL-MOSS> (add-by-wildcard *moss* "project/src/*.lisp")
-    CL-MOSS> (set-comment-string *moss* "Let's analyze some code similarities!")
-    CL-MOSS> (send *moss*)
-    -> "http://moss.stanford.edu/results/<submission-id>"
+```
+CL-MOSS> (defparameter *moss* (moss-initialize "<user-id>"))
+CL-MOSS> (set-language *moss* :lisp) ; string value is also fine
+CL-MOSS> (add-base-file *moss* "project/example.lisp")
+CL-MOSS> (add-by-wildcard *moss* "project/src/*.lisp")
+CL-MOSS> (set-comment-string *moss* "Let's analyze some code similarities!")
+CL-MOSS> (send *moss*)
+-> "http://moss.stanford.edu/results/<submission-id>"
+```
 Last step should yield a URL where you can view the results of the analysis of your submitted files.
