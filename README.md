@@ -11,7 +11,11 @@ Currently supported languages are: C, C++, Java, ML, Pascal, Ada, Lisp, Scheme, 
 
 Installation
 ------------
-CL-MOSS is ASDF-based. If you have Quicklisp installed, you can check out CL-MOSS into your `local-projects` directory (or make an appropriate symlink) and then run:
+CL-MOSS is ASDF-based. The simplest way to install it is via Quicklisp by running:
+```
+CL-USER> (ql:quickload :cl-moss)
+```
+If you have a CL-MOSS repo cloned somewhere (e.g. for hacking), you can also make Quicklisp aware of it, e.g. by creating a symlink to it in your `local-projects` directory and then run:
 ```
 CL-USER> (ql:quickload :cl-moss)
 ```
